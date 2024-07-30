@@ -1,9 +1,10 @@
 import './App.css'
+import Explore from './components/Explore';
 
 function App() {
   return (
     <>
-      <h1>TanStack Query</h1>
+      <Explore/>
     </>
   )
 }
