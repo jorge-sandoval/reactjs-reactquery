@@ -3,9 +3,7 @@ import './App.css'
 function App() {
   return (
     <>
-      <div>
-
-      </div>
+      <h1>TanStack Query</h1>
     </>
   )
 }
