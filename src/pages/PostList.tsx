@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import postService from '../api/services/postService';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function PostsList() {
+  const navigate = useNavigate();
+
   const postsQuery = useQuery({
     queryKey: ['posts'],
     queryFn: async () => {
@@ -21,7 +23,7 @@ export default function PostsList() {
       <h1>Posts List</h1>
       <ul>
         {postsQuery.data?.map(post => (
-          <li key={post.id}>
+          <li key={post.id} onClick={() => navigate(`/posts/${post.id}`)}>
             {post.title}
           </li>
         ))}

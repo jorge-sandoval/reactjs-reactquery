@@ -3,14 +3,16 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Explore from './components/Explore';
 import PostList from './pages/PostList';
 import PostList2 from './pages/PostList2';
+import Post from './pages/Post';
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<PostList />} />
+        <Route path="/posts/:id" element={<Post />} />
         <Route path="/list2" element={<PostList2 />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/" element={<PostList />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
