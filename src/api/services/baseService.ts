@@ -6,17 +6,19 @@ export default class BaseService<T extends BaseModel> {
   private storageKey: string;
   private defaultDelay: number | [number, number];
   private defaultFailRate: number;
+  private defaultItems: T[];
 
-  constructor(storageKey: string, config: Config = { delay: 500, failRate: 0 }) {
+  constructor(storageKey: string, config: Config = { delay: 500, failRate: 0 }, items: T[] = []) {
     this.storageKey = storageKey;
     this.defaultDelay = config.delay || 500;
     this.defaultFailRate = config.failRate || 0;
+    this.defaultItems = items;
     this.initStorage();
   }
 
   private initStorage() {
     if (!localStorage.getItem(this.storageKey)) {
-      localStorage.setItem(this.storageKey, JSON.stringify([]));
+      localStorage.setItem(this.storageKey, JSON.stringify(this.defaultItems));
     }
   }
 
@@ -43,7 +45,7 @@ export default class BaseService<T extends BaseModel> {
     });
   }
 
-  async getAll(pagination: PaginationConfig, config:Config = {}): Promise<PaginationResult<T>> {
+  async getAll(pagination: PaginationConfig = {}, config:Config = {}): Promise<PaginationResult<T>> {
     const pageSize = pagination.pageSize ?? 10;
     const currentPage = pagination.currentPage ?? 1;
     

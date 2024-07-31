@@ -1,4 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 const POST = [
   { id: '1', title: 'Post 1' },
@@ -9,7 +10,7 @@ function Explore() {
   const queryClient = useQueryClient();
 
   const postQuery = useQuery({
-    queryKey: ['posts'],
+    queryKey: ['explore'],
     queryFn: () => wait(500).then(() => [...POST])
   });
 
@@ -19,7 +20,7 @@ function Explore() {
         POST.push(p);
         return p;
       }),
-      onSuccess: () => queryClient.invalidateQueries(['posts'])
+      onSuccess: () => queryClient.invalidateQueries(['explore'])
   });
 
   if (postQuery.isLoading) {
@@ -32,6 +33,7 @@ function Explore() {
 
   return (
     <>
+      <Link to={`/list2`}>Go to List 2</Link>
       <h1>TanStack Query</h1>
       {
         postQuery.data?.map(p => (

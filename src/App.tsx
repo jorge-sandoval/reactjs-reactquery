@@ -1,12 +1,20 @@
 import './App.css'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Explore from './components/Explore';
+import PostList from './pages/PostList';
+import PostList2 from './pages/PostList2';
 
 function App() {
   return (
-    <>
-      <Explore/>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/list2" element={<PostList2 />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/" element={<PostList />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App
