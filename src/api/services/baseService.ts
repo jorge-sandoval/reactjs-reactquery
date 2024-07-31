@@ -45,14 +45,25 @@ export default class BaseService<T extends BaseModel> {
     });
   }
 
-  async getAll(pagination: PaginationConfig = {}, config:Config = {}): Promise<PaginationResult<T>> {
-    const pageSize = pagination.pageSize ?? 10;
-    const currentPage = pagination.currentPage ?? 1;
-    
+  async getAll(pagination?: PaginationConfig, config?:Config): Promise<PaginationResult<T>> {
     await this.simulateAsync(config);
 
     const items: T[] = JSON.parse(localStorage.getItem(this.storageKey) || '[]');
+
+    if (!pagination) {
+      return {
+        items: items,
+        currentPage: 1,
+        pageSize: items.length,
+        totalPages: 1,
+        prevPage: null,
+        nextPage: null,
+      };
+    }
     
+    const pageSize = pagination.pageSize ?? 10;
+    const currentPage = pagination.currentPage ?? 1;
+
     const totalItems = items.length;
     const totalPages = Math.ceil(totalItems / pageSize);
     const startIndex = (currentPage - 1) * pageSize;
