@@ -6,6 +6,7 @@ import PostList2 from './pages/PostList2';
 import Post from './pages/Post';
 import New from './pages/New';
 import PostListPaginated from './pages/PostListPaginated';
+import { PostListInfinite } from './pages/PostListInfinite';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/posts/:id" element={<Post />} />
         <Route path="/new" element={<New />} />
         <Route path="/paginated" element={<PostListPaginated />} />
+        <Route path="/infinite" element={<PostListInfinite />} />
         <Route path="/list2" element={<PostList2 />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="*" element={<Navigate to="/" replace />} />

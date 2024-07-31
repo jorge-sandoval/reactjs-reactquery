@@ -19,8 +19,9 @@ export default function PostsList() {
 
   return (
     <div>
-      <Link to={`/list2`}>Go to List 2</Link>
-      <Link to={`/paginated`}>Go to Paginated List</Link>
+      <Link to={`/list2`}>Go to List 2</Link> {' - '}
+      <Link to={`/paginated`}>Paginated List</Link> {' - '}
+      <Link to={`/infinite`}>Inifinte List</Link>
       <h1>Posts List</h1>
       <button onClick={() => navigate('new')}>Create Post</button>
       <ul>

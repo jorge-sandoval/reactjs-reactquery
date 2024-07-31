@@ -18,7 +18,7 @@ export default function PostsList2() {
   return (
     <div>
       <div>
-        <Link to={`/`}>Go to Home</Link>{' '}
+        <Link to={`/`}>Go to Home</Link>{' - '}
         <Link to={`/explore`}>Go to Explore</Link>
       </div>
       <h1>Posts List</h1>
